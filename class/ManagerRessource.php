@@ -43,9 +43,19 @@ class ManagerRessource{
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
     public function del(int $id)
     {
-    // supprime une tache simple
-        $q = $this->_conn->prepare('DELETE FROM `tache` WHERE id = :id');
-        $q->execute(['id' => $id]);
+    // supprime une ressource
+        $res = null;
+        try {
+            $q = $this->_conn->prepare('DELETE FROM ressource WHERE id = :id');
+            $q->execute(['id' => $id]);
+            $res[] = "succes";     
+        } catch (\Throwable $th) {
+            throw $th;
+            $res[] = "error";
+            return json_encode($res);
+        }
+        return json_encode($res);
+
     }
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°          
 // °°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°
