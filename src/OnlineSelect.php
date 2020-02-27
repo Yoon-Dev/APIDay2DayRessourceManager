@@ -4,4 +4,4 @@ require '../class/ManagerRessource.php';
 
 $manager = new ManagerRessource($conn);
 
-echo $manager->Select("real");
+echo $manager->Select("online");

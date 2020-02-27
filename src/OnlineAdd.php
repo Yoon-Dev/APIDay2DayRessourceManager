@@ -4,4 +4,8 @@ require '../class/ManagerRessource.php';
 
 $manager = new ManagerRessource($conn);
 
-echo $manager->Select("real");
+$nom = $_GET['nom'];
+$url = $_GET['url'];
+
+var_dump($_GET);
+$manager->OnlineAdd($nom, $url);
